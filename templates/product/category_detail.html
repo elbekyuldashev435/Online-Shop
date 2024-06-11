@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ category.name }}</title>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    color: #ff0000; /* Red */
+    margin-bottom: 20px;
+}
+a {
+    text-decoration: none;
+    color: #00ff00; /* Green */
+}
+a:hover {
+    text-decoration: underline;
+}
+.product-link {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s, transform 0.3s;
+}
+.product-link:hover {
+    background-color: #e9e9e9;
+    transform: scale(1.02);
+}
+.back-link {
+    margin-top: 20px;
+    display: inline-block;
+    color: #00ff00; /* Green */
+    font-weight: bold;
+}
+.back-link:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ category.name }}</h1>
+        {% for product in products %}
+            <a href="{% url 'products:product-detail' product.pk %}" class="product-link">{{ product.name }}</a>
+        {% endfor %}
+        <a href="{% url 'products:product-list' %}" class="back-link">Back to Product List</a>
+    </div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Review</title>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ product.title }}</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ add_review_form.as_p }}
+            <input type="submit" value="Add Review">
+        </form>
+    </div>
+</body>
+</html>

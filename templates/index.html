@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+<title>{% block title %} Home Page {% endblock %}</title>
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    .hero {
+        background-image: url('https://img.freepik.com/premium-vector/abstract-elegant-diagonal-striped-red-background-black-abstract-tech-product-background-tech_991099-75.jpg?w=360');
+        background-size: cover;
+        background-position: center;
+        padding: 100px 20px;
+        text-align: center;
+        color: white;
+    }
+    .hero h1 {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+    .hero p {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    .hero button {
+        background-color: #450de0;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+    .hero button:hover {
+        opacity: 0.94;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .section {
+        padding: 50px 20px;
+        text-align: center;
+    }
+    .section h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+    .section p {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+    .product {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
+        text-align: center;
+    }
+    .product:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .product img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    .product a {
+        color: #000;
+        font-weight: bold;
+        text-align: center;
+        display: block;
+    }
+    .product a:hover {
+        text-decoration: underline;
+    }
+    .testimonials {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .testimonial {
+        max-width: 300px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        text-align: center;
+    }
+    .testimonial p {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .testimonial .author {
+        font-weight: bold;
+        color: #007bff;
+    }
+    footer {
+        background-color: #ff003c;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+    }
+    footer a {
+        color: white;
+        margin: 0 10px;
+        text-decoration: none;
+    }
+    footer a:hover {
+        text-decoration: underline;
+    }
+    .product-blue{
+        color: #450de0;
+    }
+</style>
+
+<div class="hero">
+    <h1>Welcome to My Website!</h1>
+    <p>Here you can buy RAM, CPU, and Storages for your PC</p>
+    <a href="{% url 'products:product-list' %}"><button>SHOW ALL PRODUCTS</button></a>
+</div>
+
+<div class="container">
+    <div class="section">
+        <h2>Featured Products</h2>
+        <div class="products-grid">
+            <div class="product">
+                <a href="{% url 'products:product-detail' pk=4 %}">
+                    <img src="../media/products/ssd480gb.webp" alt="Kingston SSD 500GB">
+                </a>
+                <a class="product-blue" style="color: #007bff; text-decoration: unset;" href="http://127.0.0.1:8000/products/detail/4/">Kingston SSD 500GB</a>
+            </div>
+            <div class="product">
+                <a href="{% url 'products:product-detail' pk=16 %}">
+                    <img src="../media/products/ryzen9.jpg" alt="AMD Ryzen 5">
+                </a>
+                <a class="product-blue" style="color: #007bff; text-decoration: unset;" href="http://127.0.0.1:8000/products/detail/16/">AMD Ryzen 5</a>
+            </div>
+            <div class="product">
+                <a href="{% url 'products:product-detail' pk=5 %}">
+                    <img src="../media/products/inteli7.webp" alt="Intel Core i7">
+                </a>
+                <a class="product-blue" style="color: #007bff; text-decoration: unset;" href="http://127.0.0.1:8000/products/detail/5/">Intel Core i7</a>
+            </div>
+            <div class="product">
+                <a href="{% url 'products:product-detail' pk=4 %}">
+                    <img style="margin-top: 70px;" src="../media/products/1.jpg" alt="Kingston 16GB RAM">
+                </a>
+                <a class="product-blue" style="margin-top: 40px; color: #007bff; text-decoration: unset;" href="{% url 'products:product-detail' pk=8 %}">Kingston 16GB RAM</a>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="section testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial">
+            <p>"Great quality and fast delivery!"</p>
+            <p class="author">- John Doe</p>
+        </div>
+        <div class="testimonial">
+            <p>"Excellent customer service and products."</p>
+            <p class="author">- Jane Smith</p>
+        </div>
+        <div class="testimonial">
+            <p>"Highly recommend this store!"</p>
+            <p class="author">- Michael Johnson</p>
+        </div>
+        <div class="testimonial">
+            <p>"Everything good on this store!"</p>
+            <p class="author">- Emily Williams</p>
+        </div>
+        <div class="testimonial">
+            <p>"I rate this store 5+ !"</p>
+            <p class="author">- David Brown</p>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

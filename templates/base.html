@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <style>
+       body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        nav {
+            background-color: #ff0000; /* Red */
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            flex: 1;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #00ff00; /* Green */
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        button {
+            background-color: #ff0000; /* Red */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover,
+        button:hover {
+            background-color: #cc0000; /* Darker Red */
+        }
+        .error-message {
+            color: red;
+            margin-top: 5px;
+        }
+        .success-message {
+            color: green;
+            margin-top: 5px;
+        }
+        footer {
+            background-color: #ff0000; /* Red */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        footer .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+        footer .social-icons img {
+            width: 24px;
+            height: 24px;
+        }
+        .social-icons {
+            margin: 10px;
+        }
+        .developers {
+            margin-top: 20px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'home:home-page' %}">Home</a>
+        <a href="{% url 'products:product-list' %}">Products</a>
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'users:profile' %}">Profile</a>
+            <a href="{% url 'users:logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'users:register' %}">Register</a>
+            <a href="{% url 'users:login' %}">Login</a>
+        {% endif %}
+    </nav>
+    <div class="container">
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook">
+            </a>
+            <a href="https://www.twitter.com" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+            </a>
+        </div>
+        <div>
+            <a href="#footer">Privacy Policy</a> |
+            <a href="#footer">Terms of Service</a> |
+            <a href="#footer">Contact Us</a>
+        </div>
+        <div class="developers">
+            We have 5 developers working on this project: Azizbek, Elbek, Bekzod, Jahongir, Samandar.
+        </div>
+    </footer>
+    
+</body>
+</html>
